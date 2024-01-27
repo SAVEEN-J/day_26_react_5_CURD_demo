@@ -1,0 +1,74 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+
+# // {
+# //   "id": 2,
+# //   "firstname": "naveen",
+# //   "lastname": "jo",
+# //   "email": "naveen@getDNormalizer.com"
+# // },
+# // {
+# //   "id": 3,
+# //   "firstname": "praveen",
+# //   "lastname": "smart",
+# //   "email": "praveen@getNormalizer.com"
+# // },
+# // {
+# //   "id": 4,
+# //   "firstname": "saravanan",
+# //   "lastname": "mass",
+# //   "email": "Aveen@getDefaul.com"
+# // },
+# // {
+# //   "id": 5,
+# //   "firstname": "muthu",
+# //   "lastname": "enter",
+# //   "email": "ms@gmail.com"
+# // },
+# // {
+# //   "id": 6,
+# //   "firstname": "muthu",
+# //   "lastname": "enter",
+# //   "email": "mas@gmail.com"
+# // },
+# // {
+# //   "id": 7,
+# //   "firstname": "jay",
+# //   "lastname": "e",
+# //   "email": "jay@gmai.com"
+# // },
+# // {
+# //   "id": 8,
+# //   "firstname": "s",
+# //   "lastname": "s",
+# //   "email": "s"
+# // },
+# // {
+# //   "id": 9,
+# //   "firstname": "s",
+# //   "lastname": "sss",
+# //   "email": "ssss"
+# // }
