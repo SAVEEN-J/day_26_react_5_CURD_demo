@@ -38,6 +38,7 @@ function Contentwrapper({EarningsDAta}) {
   return (
     <>
     <UserDemoDataContext.Provider value={DemoTable}>
+      {/* {console.log("DemoTable",DemoTable[0].id)} */}
        {/* <!-- Content Wrapper --> */}
        <div id="content-wrapper" className="d-flex flex-column">
 

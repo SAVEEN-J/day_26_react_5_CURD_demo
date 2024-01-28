@@ -2,24 +2,31 @@
 // import ListUser from './ListUser'
 import CreateUser from './CreateUser';
 import EditUser from './EditUser';
-import React, { useContext, useState } from 'react'
-import { createContext } from 'react';
+import React, {  useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom';
-
-// import AllDataContext from '../ContextProvider/AllDataContext';
+import axios from 'axios';
+import { createContext, useEffect } from 'react';
 import './css/Apps.css'
 import UserTable from './UserTable';
-import { UserDemoDataContext } from '../component/contentwrapper';
 
-
-
-
-
+export const AllDataContext=createContext();
 function Dashboardcurd() {
-  const useDeomoDataContext=useContext(UserDemoDataContext)
+  const[usetabledata,setuseTabledata]=useState([]);
+  //from user Table 
+  const[tableClick,setTableClick]=useState([]);
+  //from edit User
+ 
+
+
+ //get the data from backend
+   useEffect(() => {
+     axios
+       .get('http://localhost:3005/UserData/')
+       .then(response => setuseTabledata(response.data));
+   },[]);
   // const{tabledataUserCliCk,setabledataUserCliCk}=useState(tableClick);
  
-  console.log({useDeomoDataContext});
+  // console.log({useDeomoDataContext});
 //  const{tabledata,setTabledata}=useContext(AllDataContext);
   // const[tabledata,setTabledata]=useState([]);
 let edithandle=()=>{
@@ -33,7 +40,8 @@ let edithandle=()=>{
 
   return (
     <>
-{/* <AllDataContext.Provider value={{editClick}} > */}
+<AllDataContext.Provider value={{usetabledata,setuseTabledata,tableClick,setTableClick}} >
+ 
     <div className="container">
     
   <h2 style={{textAlign:'center'}}>Curd Opreation</h2>
@@ -47,39 +55,21 @@ let edithandle=()=>{
     <button type="button" className="btn btn-primary ">Add User</button>&nbsp;
     </Link>
     <Link to="/edit-user">
-       <button type="button" className="btn btn-primary " id="hidden"  >Edit User</button>
+       <button type="button" className="btn btn-primary " id="hidden"  >Edit User</button>&nbsp;
     </Link>
-    <Link to="/list-User">
-    <button type="button" className="btn btn-primary ">List User</button>&nbsp;
+    <Link to="/User">
+    <button type="button" className="btn btn-primary ">Users</button>&nbsp;
     </Link>
-    {/* <Link to="/edit-user">
-       <button type="button" className="btn btn-info " id="hidden"  >Edit User</button>
-    </Link> */}
-    {/* <Link to="/create-user">
-    <button type="button" className="btn btn-primary ">Delete User</button>&nbsp;
-    </Link> */}
-         
-
 </div>&nbsp;
-{/* <ListUser tabledata={tabledata} setTabledata={setTabledata} /> */}
-
-{/* <ListUser />      */}
-
-
-
 </div>
-
-{/* </AllDataContext.Provider> */}
 <Routes>
      <Route path='/dashbord' element={ <UserTable />} />
      <Route path='/create-user' element={ <CreateUser />} />
      <Route path='/edit-user' element={ <EditUser />} />
-   <Route path='/list-User' element={ <UserTable />} />
-
+    <Route path='/User' element={ <UserTable />} />
 
   </Routes>
-  {/* <UserTable/> */}
-
+  </AllDataContext.Provider>
     </>
   )
 }

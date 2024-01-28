@@ -1,41 +1,49 @@
-import React, { useContext, useEffect, useState } from 'react'
-// import {useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useRef, useState } from 'react'
+ import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+ import { AllDataContext } from './DashbordCurd';
+
 
 
 
 function CreateUser() {
-  console.log("create useer");
- const{tabledata,setTabledata}=useState();
-//  const{tabledata,setTabledata}=useContext(AllDataContext);
-console.log(tabledata);
-const[newfname,setNewfname]=useState('')
-const[newLname,setNewLname]=useState('')
-const[newEmail,setNewEmail]=useState('')
+  const UseUserDataContext=useContext(AllDataContext);
+ const{tabledata,setTabledata}=useState(UseUserDataContext.setuseTabledata);
+
+const[newfname,setNewfname]=useState('');
+const[newLname,setNewLname]=useState('');
+const[newEmail,setNewEmail]=useState('');
 
 
-// const navigate=useNavigate();
- 
+ const navigate=useNavigate();
+//  const newNoteContentRef = useRef(null);
 //define the add new user 
   let handleSumbmit=(event)=>{
-     event.preventDefault();
- if(!newfname||!newLname||!newEmail)return;
+   event.preventDefault();
+    // console.log("handleSumbmit",event);
+//  if(!newfname||!newLname||!newEmail)return;
   
     let noteObject = {
-      id: tabledata.length + 1,
+      id: tabledata + 1,
       firstname: newfname,
       lastname: newLname,
       email:newEmail
     }
+    console.log("noteObject",noteObject);
      // add the new object to the notes state
     //  setTabledata(tabledata.concat(noteObject));
-     setTabledata(tabledata(noteObject));
+    // setTabledata(tabledata(noteObject));
 
      axios
-     .post('http://localhost:3002/UserData/',noteObject)
+     .post('http://localhost:3005/UserData/',noteObject)
+     setNewfname('');
+     setNewLname('');
+     setNewEmail('');
 
+    //  newNoteContentRef.current.focus();
   // console.log(noteObject);
-  // navigate('/home')
+   
   // Dashboardcurd();
 
   }
@@ -79,14 +87,14 @@ let handleInputEmail=(e)=>{
  
   <div className="row">
 
-      <div className="col-sm-2">
+      <div className="col-sm-3">
       {/* autoComplete='off' */}
       First Name
         <input type="text" className="form-control form-control-sm" placeholder="Enter FirstName" name="firstname"  id='firstname' value={newfname} onChange={handleInputFname} />
       
         
       </div>
-      <div className="col-sm-4">
+      <div className="col-sm-3">
       Last Name
         <input type="text" className="form-control form-control-sm" placeholder="Enter LastName" name="laststname"  id='lastname' value={newLname} onChange={handleInputLname}  />
        

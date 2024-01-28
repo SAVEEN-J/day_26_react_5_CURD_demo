@@ -1,77 +1,37 @@
-import React, { useContext,useState } from 'react'
-//  import AllDataContext from '../ContextProvider/AllDataContext';
-
-import UserTable from './UserTable';
-import { UserDataContext } from './UserTable';
-
-import axios from 'axios';
- import { createContext, useEffect } from 'react';
+import React, { useContext,useEffect,useState } from 'react'
+ import { AllDataContext } from './DashbordCurd';
+ import axios from 'axios';
 
 
 // const TableContext=React.createContext();
-
+// ,firstName,setFirstName,laststname,setLaststname,email,setEmail
 
 function EditUser() {
   console.log("edit");
-   const edittabledata=useContext(UserDataContext);
-//   const{tabledata,setTabledata}=useContext();
-//  const{tableClick,setTableClick}=useContext();
-const{tabledata,setTabledata}=useState([]);
- const{tableClick,setTableClick}=useState("");
-
-  console.log("tabledata edit",tabledata.tableClick);
-
-  
-//  const[tableClick,setTableClick]=useState(props.tableClick) //when userclick
- 
-   
-//    const[tabledata,setTabledata]=useState([]);  //stor in db
-
-//    const[table,setTable]=useState(null)
-
-//get backend
-
-    useEffect(() => {
-      axios
-        .get('http://localhost:3002/UserData/')
-        .then(response => setTabledata(response.data));
-       
-    },[]);
-
-//  console.log(" datra edit",tabledata);
-
-// //     // console.log("tabledata inside Edit",props.tableClick,tableClick.id);
-// //     useEffect(()=>{
-//      const selectData =tabledata.find((tabledata) =>tabledata.id ==tableClick.id)
-//      if (selectData) {
-//         setTable(selectData)
-        
-//      }
-//  console.log(" table final output edit",tabledata);
+const tabledata =useContext(AllDataContext);
+  //  console.log("edit",tabledata.tableClick);
+    // console.log("edit2",tabledata.setuseTabledata,tabledata.usetabledata);
 
 
+   const[firstName,setFirstName]=useState('');
+   const[laststname,setLaststname]=useState('');
+   const[email,setEmail]=useState('');
+let selectedId=tabledata.tableClick.id
+console.log("selectedId",selectedId);
+      const handleSubmit = async (event) => {
+        event.preventDefault();
 
-
-
-    
-//     },[tabledata,tableClick])
-// console.log("selectDataaaaaaa",table);
-    // const navigate=useNavigate(); 
-      let handleSumbmit=()=>{
-       
-   
-   
-      
-        
-    
-        //   navigate('/home')
-        // value={table.firstname}
-        // value={table.lastname}
-        // value={table.email}
-    
-      }
-  
-
+        try {
+            await axios.put(`http://localhost:3005/UserData/${selectedId}`, {
+               ... firstName,
+               laststname,
+               email
+               
+            });
+        } catch (error) {
+            console.error('Error updating note:', error);
+        }
+    }
    
   return (
     <>
@@ -81,29 +41,29 @@ const{tabledata,setTabledata}=useState([]);
  <div className="container mt-3">
   <h2> Edit User Forms</h2>
  
-  <form >
+  <form onSubmit={handleSubmit} >
 
  
   <div className="row">
 
-      <div className="col-sm-2">
+      <div className="col-sm-3">
      
       First Name
-        <input type="text" className="form-control form-control-sm" placeholder="Enter FirstName" name="firstname" autoComplete='off' id='firstname' value={tabledata.tableClick.firstname} />
+        <input type="text" className="form-control form-control-sm" placeholder="Enter FirstName" name="firstname" autoComplete='off' id='firstname'  value={tabledata.tableClick.firstname} onChange={(event) => setFirstName(event.target.value)} />
       
         
       </div>
-      <div className="col-sm-4">
+      <div className="col-sm-3">
       Last Name
-        <input type="text" className="form-control form-control-sm" placeholder="Enter LastName" name="laststname" autoComplete='off' id='lastname' value={tabledata.tableClick.lastname}  />
-       
+        <input type="text" className="form-control form-control-sm" placeholder="Enter LastName" name="laststname" autoComplete='off' id='lastname'  value={tabledata.tableClick.lastname}  onChange={(event) => setLaststname(event.target.value)} />
+     
       </div>
     </div>&nbsp;
     <div className="row">
       <div className="col-sm-6">
        Email
-        <input type="text" className="form-control form-control-sm" placeholder="Eg : johndoe@mail.com" name="email" autoComplete='off' id='email' value={tabledata.tableClick.email}  />     
-  
+        <input type="text" className="form-control form-control-sm" placeholder="Eg : johndoe@mail.com" name="email" autoComplete='off' id='email'  value={tabledata.tableClick.email}  onChange={(event) => setEmail(event.target.value)} />     
+       
       </div>
      
     </div>&nbsp;
@@ -114,8 +74,7 @@ const{tabledata,setTabledata}=useState([]);
     
   </form>
 </div>
-{/* </TableContext.Provider> */}
-{/* {UserDataContext.tableRowClick && <UpdateUser />} */}
+
 </>
   )
 
