@@ -1,39 +1,28 @@
-import { useContext } from 'react';
-import React, { useState } from 'react'
 import './css/Apps.css'
+import React, {useContext } from 'react'
 
-import { AllDataContext } from './DashbordCurd';
+import { Container, Row ,Col } from 'react-bootstrap';
+import { AllDataContext } from '..';
 
+
+
+//READ DATA
 function UserTable() {
 
-const tabledata =useContext(AllDataContext);
-
-// console.log("tabledata user ",tabledata);
-  // let edithandle=()=>{
-
-  //   navigate('/edit-user')
-
-  // }
-  let handleeditClick=(handleeditClickData)=>{
-   
-     var tableRowClick=handleeditClickData;
-    //  console.log("log",tableRowClick);
-   
-   if (tableRowClick.id >0) {
-  //  let displayblock=document.getElementsByClassName(".hidden")
-  document.getElementById("hidden").style.display = "inline-block";
-  tabledata.setTableClick(tableRowClick)
-    }
-     
-  }
+const{trhandleClick,tabledata}=useContext(AllDataContext);
 
 
   return (
-    <>
+ 
+  <Container>
+<Row>  
+    <Col  md={{ span: 6, offset: 5 }}>
+    <h2>User Data</h2>
+    </Col>
   
-   
-<h1>user Table </h1>
-
+</Row>
+    
+<Row>.
 <table className="table table-dark table-hover table-bordered">
     <thead >
       <tr className='justify-content-center text-center'>
@@ -41,18 +30,21 @@ const tabledata =useContext(AllDataContext);
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
+       <th style={{visibility:"hidden",border: "none",display:"none"}}>UniqeId</th>
+
       </tr>
     </thead>
     <tbody>
-    {tabledata.usetabledata.length >0 ?(
-      tabledata.usetabledata.map((data,index)=>(
-        <tr key={data.id}  value={data.id} className={ ` tr_${data.id}`}  >
-        <td  className={ `text-center td_${data.id}`}  onClick={()=>handleeditClick(data)}>{data.id}</td>
-        <td  className={ `text-center td_${data.id}`}  onClick={()=>handleeditClick(data)}> {data.firstname}</td>
-        <td  className={ `text-center td_${data.id}`} onClick={()=>handleeditClick(data)}>{data.lastname}</td>
-        <td  className={ `text-center td_${data.id}`} onClick={()=>handleeditClick(data)}>{data.email}</td>
-      
-      </tr>
+    {tabledata.length >0 ?(
+      tabledata.map((data,index)=>(
+         <tr key={data.id}  value={data.id} className={ ` tr_${data.id}`}onClick={()=>trhandleClick(data)} >
+            <td  className={ `text-center td_${data.id}`} >{data.id}</td>
+      <td  className={ `text-center td_${data.id}`} > {data.firstname}</td>
+      <td  className={ `text-center td_${data.id}`} >{data.lastname}</td>
+      <td  className={ `text-center td_${data.id}`} >{data.email}</td>
+      <td  className={ `text-center td_${data.id}`} style={{visibility:"hidden",border: "none",display:"none"}} >{data.id}</td>
+    
+    </tr>
 
       ))
     ):(
@@ -66,9 +58,9 @@ const tabledata =useContext(AllDataContext);
     )}
        </tbody>
   </table>
-
-   
-    </>
+  </Row>
+  </Container>
+  
   )
 }
 export default UserTable;
