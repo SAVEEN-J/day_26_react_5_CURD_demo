@@ -19,15 +19,16 @@ import { faChartArea, faCog, faTable, faTachometerAlt, faWrench } from '@fortawe
 // for ex: <i className="fas fa-laugh-wink"></i>
   import '@fortawesome/fontawesome-free/css/all.min.css';
 import Wrapperpage from './component/pagewrapper';
-import { useState } from "react";
-// import {AllDataContext} from './ContextProvider/AllDataContext';
+import { React , createContext, useState } from "react";
+// import AllDataContext from './ContextProvider/AllDataContext';
+
 
 
 // To install fontawesome
 // npm i -S @fortawesome/fontawesome-svg-core @fortawesome/react-fontawesome @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/free-brands-svg-icons
 
 function App({EarningsDAta}) {
-  const[dashbord,setDashbord]=useState("Dashbord")
+
 
   
 
