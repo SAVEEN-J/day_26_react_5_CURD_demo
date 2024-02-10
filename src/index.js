@@ -50,6 +50,8 @@ export const AllDataContext =createContext();
 
 // Create a Context Provider
 const AllDataContextProvider =({children})=>{
+  const[show,setShow]=useState(false);
+
 //get alluser data form backend
   const[tabledata,setTabledata]=useState([]);
 
@@ -65,7 +67,7 @@ const[userUniqeId,setuserUniqeId]=useState();
 const[newLname,setNewLname]=useState('');
 const[newEmail,setNewEmail]=useState('');
   //user table when user click to edit
- const[tableClick,setTableClick]=useState([]);
+ const[tableClickdelete,setTableClick]=useState([]);
 //edit data
 const[hiddeneditid,seteditid]=useState('');
  const[firstname,setFirstName]=useState('');
@@ -145,38 +147,90 @@ setEmail(tableRowClick.email)
  }
 }
 //delete
-let handleDelete=async(event)=>{
-  const paragraphs = document.getElementsByTagName("p");
-  var text="Are You Want To Delete This Record";
-  console.log("event",event);
-if (tableClick) {
-      try {
-            await axios.delete(`http://localhost:3005/UserData/${hiddeneditid}`, {
-              id:hiddeneditid,        
-               firstname,
-               lastname,
-               email
-               
-            });
-        } catch (error) {
-            console.error('Error updating note:', error);
-        }
+
+let handleClose=(event)=>{
+
+
+}
+
+let handleDelete=(event)=>{
+// console.log(tableClickdelete);
+if (tableClickdelete) {
+  setShow(true)
+} else {
+  
+}
+ 
+  // console.log("close",show);
+}
+
+
+let handleClosedelete=async(event)=>{
+   event.preventDefault();
+          
+                try {
+
+          axios.delete(`http://localhost:3005/UserData/${hiddeneditid}`, {
+          id:hiddeneditid,        
+          firstname,
+          lastname,
+          email
+
+          }
+          );
+       
+          setRefersh(!refresh)
+
+          navigate('/dashbord');
+
+          } catch (error) {
+          console.error('Error updating note:', error);
+
+
+          }
+        
+
+
+        
+          setRefersh(!refresh)
+
+          navigate('/dashbord');
+
+    
+      } 
+ 
+      let goback=()=>{
         setRefersh(!refresh)
 
         navigate('/dashbord');
 
+      }
+
+// if (tableClick) {
+//       try {
+
+//              axios.delete(`http://localhost:3005/UserData/${hiddeneditid}`, {
+//               id:hiddeneditid,        
+//                firstname,
+//                lastname,
+//                email
+               
+//             }
+//             );
+           
+
+//         } catch (error) {
+//             console.error('Error updating note:', error);
+//         }
+//         setRefersh(!refresh)
+
+//         navigate('/dashbord');
+
  
-} else {
+// } else {
   
-}
-  console.log("hiddeneditid",tableClick);
-  if (tableClick) {
-    //  document.getElementById("deletedata").innerHTML= text;
-   
-    } else {
-     <h2>Select the User to delete</h2>
- 
-    }
+// }
+
   // event.preventDefault();
   //     try {
   //           await axios.delete(`http://localhost:3005/UserData/${hiddeneditid}`, {
@@ -193,7 +247,7 @@ if (tableClick) {
 
   //       navigate('/dashbord');
   
-}
+// }
 
 
 return(
@@ -213,8 +267,7 @@ return(
     newEmail,
     setNewEmail,
     
-    // tableClick,
-    // setTableClick,
+   
 
     handleeditSubmit,
     trhandleClick,
@@ -226,7 +279,15 @@ return(
     setLaststname,
     email,
     setEmail,
-    handleDelete
+
+     tableClickdelete,
+    setTableClick,
+    handleDelete,
+    handleClose,
+    show,
+    setShow,
+    handleClosedelete,
+    goback
 
 
   }}
