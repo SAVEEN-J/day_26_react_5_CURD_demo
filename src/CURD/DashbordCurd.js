@@ -5,12 +5,14 @@ import './css/Apps.css'
 import UserTable from './UserTable';
 import { Container } from 'react-bootstrap';
 import DeleteUser from './DeleteUser';
- import { AllDataContext } from '..';
+//  import { AllDataContext } from '..';
 import { useContext } from 'react';
+import { AllDataContext } from '..';
 
 function Dashboardcurd() {
 let{handleDelete,handleclose}=useContext(AllDataContext);
 
+// useContext(AllDataContext)
   return (
     <Container>
     

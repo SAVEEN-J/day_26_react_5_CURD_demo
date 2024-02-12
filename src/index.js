@@ -188,67 +188,16 @@ let handleClosedelete=async(event)=>{
 
 
           }
-        
-
-
-        
+       
           setRefersh(!refresh)
-
           navigate('/dashbord');
-
     
       } 
- 
-      let goback=()=>{
+       let goback=()=>{
         setRefersh(!refresh)
-
         navigate('/dashbord');
 
       }
-
-// if (tableClick) {
-//       try {
-
-//              axios.delete(`http://localhost:3005/UserData/${hiddeneditid}`, {
-//               id:hiddeneditid,        
-//                firstname,
-//                lastname,
-//                email
-               
-//             }
-//             );
-           
-
-//         } catch (error) {
-//             console.error('Error updating note:', error);
-//         }
-//         setRefersh(!refresh)
-
-//         navigate('/dashbord');
-
- 
-// } else {
-  
-// }
-
-  // event.preventDefault();
-  //     try {
-  //           await axios.delete(`http://localhost:3005/UserData/${hiddeneditid}`, {
-  //             id:hiddeneditid,        
-  //              firstname,
-  //              lastname,
-  //              email
-               
-  //           });
-  //       } catch (error) {
-  //           console.error('Error updating note:', error);
-  //       }
-  //       setRefersh(!refresh)
-
-  //       navigate('/dashbord');
-  
-// }
-
 
 return(
  <AllDataContext.Provider
@@ -266,9 +215,7 @@ return(
     setNewLname,
     newEmail,
     setNewEmail,
-    
-   
-
+ 
     handleeditSubmit,
     trhandleClick,
     hiddeneditid,
