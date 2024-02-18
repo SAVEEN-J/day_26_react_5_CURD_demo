@@ -147,6 +147,7 @@ setEmail(tableRowClick.email)
  }
 }
 //delete
+<<<<<<< HEAD
 
 let handleClose=(event)=>{
 
@@ -201,9 +202,12 @@ let handleClosedelete=async(event)=>{
  
       let goback=()=>{
         setRefersh(!refresh)
+=======
+>>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
 
-        navigate('/dashbord');
+let handleClose=(event)=>{
 
+<<<<<<< HEAD
       }
 
 // if (tableClick) {
@@ -248,7 +252,56 @@ let handleClosedelete=async(event)=>{
   //       navigate('/dashbord');
   
 // }
+=======
 
+}
+
+let handleDelete=(event)=>{
+// console.log(tableClickdelete);
+if (tableClickdelete) {
+  setShow(true)
+} else {
+  
+}
+ 
+  // console.log("close",show);
+}
+>>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
+
+
+let handleClosedelete=async(event)=>{
+   event.preventDefault();
+          
+                try {
+
+          axios.delete(`http://localhost:3005/UserData/${hiddeneditid}`, {
+          id:hiddeneditid,        
+          firstname,
+          lastname,
+          email
+
+          }
+          );
+       
+          setRefersh(!refresh)
+
+          navigate('/dashbord');
+
+          } catch (error) {
+          console.error('Error updating note:', error);
+
+
+          }
+       
+          setRefersh(!refresh)
+          navigate('/dashbord');
+    
+      } 
+       let goback=()=>{
+        setRefersh(!refresh)
+        navigate('/dashbord');
+
+      }
 
 return(
  <AllDataContext.Provider
@@ -266,9 +319,13 @@ return(
     setNewLname,
     newEmail,
     setNewEmail,
+<<<<<<< HEAD
     
    
 
+=======
+ 
+>>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
     handleeditSubmit,
     trhandleClick,
     hiddeneditid,

@@ -1,3 +1,28 @@
 {
+<<<<<<< HEAD
   "UserData": []
+=======
+  "UserData": [
+    {
+      "id": 1,
+      "UniqeId": 1,
+      "firstname": "saveen",
+      "lastname": "ko",
+      "email": "saveenj1996@gmail.com"
+    },
+    {
+      "id": 2,
+      "UniqeId": 2,
+      "firstname": "naveen",
+      "lastname": "j",
+      "email": "jay@gmail.com"
+    },
+    {
+      "id": 3,
+      "firstname": "saveendvv",
+      "lastname": "sac",
+      "email": "savcdcsdcx1996@gmail.com"
+    }
+  ]
+>>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
 }

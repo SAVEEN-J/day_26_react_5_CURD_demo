@@ -5,12 +5,14 @@ import './css/Apps.css'
 import UserTable from './UserTable';
 import { Container } from 'react-bootstrap';
 import DeleteUser from './DeleteUser';
- import { AllDataContext } from '..';
+//  import { AllDataContext } from '..';
 import { useContext } from 'react';
+import { AllDataContext } from '..';
 
 function Dashboardcurd() {
 let{handleDelete,handleclose}=useContext(AllDataContext);
 
+// useContext(AllDataContext)
   return (
     <Container>
     
@@ -18,7 +20,7 @@ let{handleDelete,handleclose}=useContext(AllDataContext);
 
   <div className="container">
   <Link to="/dashbord">
-    <button type="button" className="btn btn-primary ">Home</button>&nbsp;
+    <button type="button" className="btn btn-primary " >Home</button>&nbsp;
     </Link>
   
     <Link to="/create-user">
@@ -27,9 +29,9 @@ let{handleDelete,handleclose}=useContext(AllDataContext);
     <Link to="/edit-user">
        <button type="button" className="btn btn-primary " id="" onClick={handleDelete} >Edit User</button>&nbsp;
     </Link>
-    {/* <Link to="/User">
+    <Link to="/User">
     <button type="button" className="btn btn-info ">Users</button>&nbsp;
-    </Link> */}
+    </Link>
     <Link to="/delete">
     <button type="button" id='' className="btn btn-danger" onClick={handleDelete} >Delete</button>&nbsp;
     </Link>
@@ -38,7 +40,7 @@ let{handleDelete,handleclose}=useContext(AllDataContext);
      <Route path='/dashbord' element={ <UserTable />} />
      <Route path='/create-user' element={ <CreateUser />} />
      <Route path='/edit-user' element={ <EditUser />} />
-    {/* <Route path='/User' element={ <UserTable />} /> */}
+    <Route path='/User' element={ <UserTable />} />
      <Route path='/delete' element={ <DeleteUser  />} />
   </Routes>
     </Container>
