@@ -1,5 +1,5 @@
 
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -147,12 +147,12 @@ setEmail(tableRowClick.email)
  }
 }
 //delete
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
-let handleClose=(event)=>{
+// let handleClose=(event)=>{
 
 
-}
+// }
 
 let handleDelete=(event)=>{
 // console.log(tableClickdelete);
@@ -202,12 +202,11 @@ let handleClosedelete=async(event)=>{
  
       let goback=()=>{
         setRefersh(!refresh)
-=======
->>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
+// =======
+// >>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
 
 let handleClose=(event)=>{
 
-<<<<<<< HEAD
       }
 
 // if (tableClick) {
@@ -252,21 +251,6 @@ let handleClose=(event)=>{
   //       navigate('/dashbord');
   
 // }
-=======
-
-}
-
-let handleDelete=(event)=>{
-// console.log(tableClickdelete);
-if (tableClickdelete) {
-  setShow(true)
-} else {
-  
-}
- 
-  // console.log("close",show);
-}
->>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
 
 
 let handleClosedelete=async(event)=>{
@@ -319,13 +303,13 @@ return(
     setNewLname,
     newEmail,
     setNewEmail,
-<<<<<<< HEAD
+// <<<<<<< HEAD
     
    
 
-=======
+// =======
  
->>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
+// >>>>>>> 38b144669d6627e8fd144f8c7c089cd89be19a24
     handleeditSubmit,
     trhandleClick,
     hiddeneditid,
@@ -368,4 +352,5 @@ root.render(
    
 
 );
+}
 
