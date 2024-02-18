@@ -1,12 +1,27 @@
-import { useContext } from 'react';
-import React, { useState } from 'react'
 import './css/Apps.css'
+import React, {useContext, useEffect, useRef, useState } from 'react'
+import {useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Container, Row ,Col } from 'react-bootstrap';
+import { AllDataContext } from '..';
 
-import { AllDataContext } from './DashbordCurd';
 
+
+//READ DATA
 function UserTable() {
 
-const tabledata =useContext(AllDataContext);
+  
+  //use context 
+const{handleeditClick,trhandleClick, setTableClick,tabledata,setTabledata}=useContext(AllDataContext);
+//  const[tabledata,setTabledata]=useState([]);
+// console.log("setTableClick");
+//  const {id}=useParams();
+//  console.log("useParams",id);
+
+// const[tableClick,setTableClick]=useState([]);
+
+//  console.log("tableClick",tableClick);
+//  console.log("setTableClick",setTableClick);
 
 // console.log("tabledata user ",tabledata);
   // let edithandle=()=>{
@@ -14,26 +29,42 @@ const tabledata =useContext(AllDataContext);
   //   navigate('/edit-user')
 
   // }
-  let handleeditClick=(handleeditClickData)=>{
-   
-     var tableRowClick=handleeditClickData;
-    //  console.log("log",tableRowClick);
-   
-   if (tableRowClick.id >0) {
-  //  let displayblock=document.getElementsByClassName(".hidden")
-  document.getElementById("hidden").style.display = "inline-block";
-  tabledata.setTableClick(tableRowClick)
-    }
-     
-  }
 
+
+  // useEffect(() => {
+  //   axios
+  //     .get('http://localhost:3005/UserData/')
+  //     .then(response => setTabledata(response.data));
+  // },[]);
+  // let handleeditClick=(handleeditClickData)=>{
+   
+  //    var tableRowClick=handleeditClickData;
+  // //  console.log("log",tableRowClick);
+   
+  //  if (tableRowClick.id >0) {
+  // //  let displayblock=document.getElementsByClassName(".hidden")
+  // document.getElementById("hidden").style.display = "inline-block";
+  // setTableClick(tableRowClick)
+  //   }
+     
+  // }
+// console.log("tabledata",tabledata);
 
   return (
-    <>
+ 
+  <Container>
+<Row>  
+    <Col  md={{ span: 6, offset: 3 }}>
+    <h2>User Data</h2>
+    </Col>
   
-   
-<h1>user Table </h1>
 
+
+</Row>
+ 
+   
+
+<Row>.
 <table className="table table-dark table-hover table-bordered">
     <thead >
       <tr className='justify-content-center text-center'>
@@ -41,18 +72,28 @@ const tabledata =useContext(AllDataContext);
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
+       <th style={{visibility:"hidden",border: "none",display:"none"}}>UniqeId</th>
+
       </tr>
     </thead>
     <tbody>
-    {tabledata.usetabledata.length >0 ?(
-      tabledata.usetabledata.map((data,index)=>(
-        <tr key={data.id}  value={data.id} className={ ` tr_${data.id}`}  >
-        <td  className={ `text-center td_${data.id}`}  onClick={()=>handleeditClick(data)}>{data.id}</td>
-        <td  className={ `text-center td_${data.id}`}  onClick={()=>handleeditClick(data)}> {data.firstname}</td>
-        <td  className={ `text-center td_${data.id}`} onClick={()=>handleeditClick(data)}>{data.lastname}</td>
-        <td  className={ `text-center td_${data.id}`} onClick={()=>handleeditClick(data)}>{data.email}</td>
+    {tabledata.length >0 ?(
+      tabledata.map((data,index)=>(
+      //   <tr key={data.id}  value={data.id} className={ ` tr_${data.id}`}  >
+      //   <td  className={ `text-center td_${data.id}`} value={data.id} onClick={()=>handleeditClick(data)}>{data.id}</td>
+      //   <td  className={ `text-center td_${data.id}`} value={data.firstname} onClick={()=>handleeditClick(data)}> {data.firstname}</td>
+      //   <td  className={ `text-center td_${data.id}`} value={data.lastname} onClick={()=>handleeditClick(data)}>{data.lastname}</td>
+      //   <td  className={ `text-center td_${data.id}`} value={data.email} onClick={()=>handleeditClick(data)}>{data.email}</td>
       
-      </tr>
+      // </tr>
+      <tr key={data.id}  value={data.id} className={ ` tr_${data.id}`}onClick={()=>trhandleClick(data)} >
+            <td  className={ `text-center td_${data.id}`} >{data.id}</td>
+      <td  className={ `text-center td_${data.id}`} > {data.firstname}</td>
+      <td  className={ `text-center td_${data.id}`} >{data.lastname}</td>
+      <td  className={ `text-center td_${data.id}`} >{data.email}</td>
+      <td  className={ `text-center td_${data.id}`} style={{visibility:"hidden",border: "none",display:"none"}} >{data.id}</td>
+    
+    </tr>
 
       ))
     ):(
@@ -66,9 +107,9 @@ const tabledata =useContext(AllDataContext);
     )}
        </tbody>
   </table>
-
-   
-    </>
+  </Row>
+  </Container>
+  
   )
 }
 export default UserTable;
