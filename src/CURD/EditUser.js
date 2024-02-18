@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 
  import { Container, Row ,Col } from 'react-bootstrap';
 import { AllDataContext } from '..';
+import { Button, Modal } from 'react-bootstrap';
+
 
 
 
@@ -9,12 +11,12 @@ import { AllDataContext } from '..';
 
 function EditUser() {
  
- const{handleeditSubmit,hiddeneditid,seteditid, firstname, setFirstName, lastname,setLaststname,email, setEmail}=useContext(AllDataContext);
+ const{handleeditSubmit,hiddeneditid,seteditid, firstname, setFirstName, lastname,setLaststname,email, setEmail,goback,show,tableClickdelete,handleClose,handleDelete}=useContext(AllDataContext);
 
   return (
     <>
 
-    {hiddeneditid && 
+    {(tableClickdelete.id >= 1) ?( 
   <Container>
   <Row>
     <Col  md={{ span: 6, offset: 3 }}>
@@ -55,6 +57,24 @@ function EditUser() {
   </form>
 
 </Container>
+    ):(
+
+      <Modal show={show} onHide={handleClose}> 
+      <Modal.Header closeButton>
+          <Modal.Title>No  Record Selected </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h3>  Please Select the record to Edit.</h3> 
+        </Modal.Body>  
+        <Modal.Footer>
+          <Button variant="secondary" onClick={goback}>
+            Go Back
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+  )
+
 }
 </>
   )

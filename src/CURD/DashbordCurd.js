@@ -9,7 +9,7 @@ import DeleteUser from './DeleteUser';
 import { useContext } from 'react';
 
 function Dashboardcurd() {
-let{handleDelete}=useContext(AllDataContext);
+let{handleDelete,handleclose}=useContext(AllDataContext);
 
   return (
     <Container>
@@ -25,13 +25,13 @@ let{handleDelete}=useContext(AllDataContext);
     <button type="button" className="btn btn-success ">Add User</button>&nbsp;
     </Link>
     <Link to="/edit-user">
-       <button type="button" className="btn btn-primary " id=""  >Edit User</button>&nbsp;
+       <button type="button" className="btn btn-primary " id="" onClick={handleDelete} >Edit User</button>&nbsp;
     </Link>
     {/* <Link to="/User">
     <button type="button" className="btn btn-info ">Users</button>&nbsp;
     </Link> */}
     <Link to="/delete">
-    <button type="button" id='' className="btn btn-danger  " onClick={handleDelete}>Delete</button>&nbsp;
+    <button type="button" id='' className="btn btn-danger" onClick={handleDelete} >Delete</button>&nbsp;
     </Link>
  </div>&nbsp;
 <Routes>
@@ -46,3 +46,4 @@ let{handleDelete}=useContext(AllDataContext);
 }
 
 export default Dashboardcurd;
+
